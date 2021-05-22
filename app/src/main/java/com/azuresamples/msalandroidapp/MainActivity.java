@@ -43,17 +43,17 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
+        implements //NavigationView.OnNavigationItemSelectedListener,
         OnFragmentInteractionListener{
-
+/**
     enum AppFragment {
         SingleAccount,
 //      MultipleAccount,
-        B2C
+//      B2C
     }
 
-    private AppFragment mCurrentFragment;
-
+    private AppFragment mCurrentFragment = AppFragment.SingleAccount;
+*/
     private ConstraintLayout mContentMain;
 
     @Override
@@ -65,19 +65,21 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//       NavigationView navigationView = findViewById(R.id.nav_view);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//       toggle.syncState();
+//        navigationView.setNavigationItemSelectedListener(this);
 
         //Set default fragment
-        navigationView.setCheckedItem(R.id.nav_single_account);
-        setCurrentFragment(AppFragment.SingleAccount);
+//        navigationView.setCheckedItem(R.id.nav_single_account);
+        setHeaderString();
+        displayFragment();
+//      setCurrentFragment(AppFragment.SingleAccount);
     }
-
+/**
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -91,20 +93,18 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
                 // Handle navigation view item clicks here.
-                int id = item.getItemId();
+//                int id = item.getItemId();
 
-                if (id == R.id.nav_single_account) {
-                    setCurrentFragment(AppFragment.SingleAccount);
-                }
-
+//                if (id == R.id.nav_single_account) {
+//                    setCurrentFragment(AppFragment.SingleAccount);
+//                }
 //                if (id == R.id.nav_multiple_account) {
 //                    setCurrentFragment(AppFragment.MultipleAccount);
- //               }
+//               }
 
-                if (id == R.id.nav_b2c) {
-                    setCurrentFragment(AppFragment.B2C);
-                }
-
+//                if (id == R.id.nav_b2c) {
+//                    setCurrentFragment(AppFragment.B2C);
+//                }
                 drawer.removeDrawerListener(this);
             }
 
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+
     private void setCurrentFragment(final AppFragment newFragment){
         if (newFragment == mCurrentFragment) {
             return;
@@ -125,37 +126,36 @@ public class MainActivity extends AppCompatActivity
         setHeaderString(mCurrentFragment);
         displayFragment(mCurrentFragment);
     }
+*/
 
-    private void setHeaderString(final AppFragment fragment){
-        switch (fragment) {
-            case SingleAccount:
-                getSupportActionBar().setTitle("Single Account Mode");
-                return;
-
+    private void setHeaderString(){
+//        switch (fragment) {
+//            case SingleAccount:
+        getSupportActionBar().setTitle("Hardware Inventory");
+//                return;
 //            case MultipleAccount:
 //                getSupportActionBar().setTitle("Multiple Account Mode");
 //                return;
 
-            case B2C:
-                getSupportActionBar().setTitle("B2C Mode");
-                return;
-        }
+//            case B2C:
+//                getSupportActionBar().setTitle("B2C Mode");
+//                return;
+//        }
     }
 
-    private void displayFragment(final AppFragment fragment){
-        switch (fragment) {
-            case SingleAccount:
-                attachFragment(new SingleAccountModeFragment());
-                return;
-
+    private void displayFragment(){
+//        switch (fragment) {
+//            case SingleAccount:
+        attachFragment(new SingleAccountModeFragment());
+//                return;
 //            case MultipleAccount:
 //                attachFragment(new MultipleAccountModeFragment());
 //                return;
 
-            case B2C:
-                attachFragment(new B2CModeFragment());
-                return;
-        }
+//            case B2C:
+//               attachFragment(new B2CModeFragment());
+//               return;
+//        }
     }
 
     private void attachFragment(final Fragment fragment) {
