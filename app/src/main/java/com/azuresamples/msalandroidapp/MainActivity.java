@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
     enum AppFragment {
         SingleAccount,
-        MultipleAccount,
+//      MultipleAccount,
         B2C
     }
 
@@ -97,9 +97,9 @@ public class MainActivity extends AppCompatActivity
                     setCurrentFragment(AppFragment.SingleAccount);
                 }
 
-                if (id == R.id.nav_multiple_account) {
-                    setCurrentFragment(AppFragment.MultipleAccount);
-                }
+//                if (id == R.id.nav_multiple_account) {
+//                    setCurrentFragment(AppFragment.MultipleAccount);
+ //               }
 
                 if (id == R.id.nav_b2c) {
                     setCurrentFragment(AppFragment.B2C);
@@ -132,9 +132,9 @@ public class MainActivity extends AppCompatActivity
                 getSupportActionBar().setTitle("Single Account Mode");
                 return;
 
-            case MultipleAccount:
-                getSupportActionBar().setTitle("Multiple Account Mode");
-                return;
+//            case MultipleAccount:
+//                getSupportActionBar().setTitle("Multiple Account Mode");
+//                return;
 
             case B2C:
                 getSupportActionBar().setTitle("B2C Mode");
@@ -148,9 +148,9 @@ public class MainActivity extends AppCompatActivity
                 attachFragment(new SingleAccountModeFragment());
                 return;
 
-            case MultipleAccount:
-                attachFragment(new MultipleAccountModeFragment());
-                return;
+//            case MultipleAccount:
+//                attachFragment(new MultipleAccountModeFragment());
+//                return;
 
             case B2C:
                 attachFragment(new B2CModeFragment());
