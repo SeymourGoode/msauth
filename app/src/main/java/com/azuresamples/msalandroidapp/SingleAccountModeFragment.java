@@ -52,6 +52,7 @@ import com.microsoft.identity.client.exception.MsalServiceException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 /**
  * Implementation sample for 'Single account' mode.
@@ -68,13 +69,13 @@ public class SingleAccountModeFragment extends Fragment {
     /* UI & Debugging Variables */
     Button signInButton;
     Button signOutButton;
-    Button callGraphApiInteractiveButton;
-    Button callGraphApiSilentButton;
-    TextView scopeTextView;
-    TextView graphResourceTextView;
-    TextView logTextView;
-    TextView currentUserTextView;
-    TextView deviceModeTextView;
+ //   Button callGraphApiInteractiveButton;
+//    Button callGraphApiSilentButton;
+    String scopeTextView;
+    String graphResourceTextView;
+//    TextView logTextView;
+ //   TextView currentUserTextView;
+//    TextView deviceModeTextView;
 
     /* Azure AD Variables */
     private ISingleAccountPublicClientApplication mSingleAccountApp;
@@ -117,16 +118,16 @@ public class SingleAccountModeFragment extends Fragment {
     private void initializeUI(@NonNull final View view) {
         signInButton = view.findViewById(R.id.btn_signIn);
         signOutButton = view.findViewById(R.id.btn_removeAccount);
-        callGraphApiInteractiveButton = view.findViewById(R.id.btn_callGraphInteractively);
-        callGraphApiSilentButton = view.findViewById(R.id.btn_callGraphSilently);
-        scopeTextView = view.findViewById(R.id.scope);
-        graphResourceTextView = view.findViewById(R.id.msgraph_url);
-        logTextView = view.findViewById(R.id.txt_log);
-        currentUserTextView = view.findViewById(R.id.current_user);
-        deviceModeTextView = view.findViewById(R.id.device_mode);
+//        callGraphApiInteractiveButton = view.findViewById(R.id.btn_callGraphInteractively);
+//        callGraphApiSilentButton = view.findViewById(R.id.btn_callGraphSilently);
+        scopeTextView = "user.read";
+//        graphResourceTextView = view.findViewById(R.id.msgraph_url);
+//        logTextView = view.findViewById(R.id.txt_log);
+//        currentUserTextView = view.findViewById(R.id.current_user);
+//        deviceModeTextView = view.findViewById(R.id.device_mode);
 
         final String defaultGraphResourceUrl = MSGraphRequestWrapper.MS_GRAPH_ROOT_ENDPOINT + "v1.0/me";
-        graphResourceTextView.setText(defaultGraphResourceUrl);
+        graphResourceTextView = defaultGraphResourceUrl;
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -162,7 +163,7 @@ public class SingleAccountModeFragment extends Fragment {
                 });
             }
         });
-
+/**
         callGraphApiInteractiveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (mSingleAccountApp == null) {
@@ -177,10 +178,11 @@ public class SingleAccountModeFragment extends Fragment {
                  *  - password change
                  *  - the resource you're acquiring a token for has a stricter set of requirement than your Single Sign-On refresh token.
                  *  - you're introducing a new scope which the user has never consented for.
-                 */
+
                 mSingleAccountApp.acquireToken(getActivity(), getScopes(), getAuthInteractiveCallback());
             }
         });
+
 
         callGraphApiSilentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -192,10 +194,10 @@ public class SingleAccountModeFragment extends Fragment {
                 /**
                  * Once you've signed the user in,
                  * you can perform acquireTokenSilent to obtain resources without interrupting the user.
-                 */
+
                 mSingleAccountApp.acquireTokenSilentAsync(getScopes(), mAccount.getAuthority(), getAuthSilentCallback());
             }
-        });
+        });*/
 
     }
 
@@ -217,7 +219,7 @@ public class SingleAccountModeFragment extends Fragment {
      * i.e. from "User.Read User.ReadWrite" to ["user.read", "user.readwrite"]
      */
     private String[] getScopes() {
-        return scopeTextView.getText().toString().toLowerCase().split(" ");
+        return scopeTextView.toLowerCase().split(" ");
     }
 
     /**
@@ -331,7 +333,8 @@ public class SingleAccountModeFragment extends Fragment {
     private void callGraphAPI(final IAuthenticationResult authenticationResult) {
         MSGraphRequestWrapper.callGraphAPIUsingVolley(
                 getContext(),
-                graphResourceTextView.getText().toString(),
+                graphResourceTextView,
+                //graphResourceTextView.getText().toString(),
                 authenticationResult.getAccessToken(),
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -363,14 +366,14 @@ public class SingleAccountModeFragment extends Fragment {
      * Display the graph response
      */
     private void displayGraphResult(@NonNull final JSONObject graphResponse) {
-        logTextView.setText(graphResponse.toString());
+        //logTextView.setText(graphResponse.toString());
     }
 
     /**
      * Display the error message
      */
     private void displayError(@NonNull final Exception exception) {
-        logTextView.setText(exception.toString());
+        //logTextView.setText(exception.toString());
     }
 
     /**
@@ -380,18 +383,18 @@ public class SingleAccountModeFragment extends Fragment {
         if (mAccount != null) {
             signInButton.setEnabled(false);
             signOutButton.setEnabled(true);
-            callGraphApiInteractiveButton.setEnabled(true);
-            callGraphApiSilentButton.setEnabled(true);
-            currentUserTextView.setText(mAccount.getUsername());
+            //callGraphApiInteractiveButton.setEnabled(true);
+            //callGraphApiSilentButton.setEnabled(true);
+            //currentUserTextView.setText(mAccount.getUsername());
         } else {
             signInButton.setEnabled(true);
             signOutButton.setEnabled(false);
-            callGraphApiInteractiveButton.setEnabled(false);
-            callGraphApiSilentButton.setEnabled(false);
-            currentUserTextView.setText("None");
+            //callGraphApiInteractiveButton.setEnabled(false);
+            //callGraphApiSilentButton.setEnabled(false);
+            //currentUserTextView.setText("None");
         }
 
-        deviceModeTextView.setText(mSingleAccountApp.isSharedDevice() ? "Shared" : "Non-shared");
+//        deviceModeTextView.setText(mSingleAccountApp.isSharedDevice() ? "Shared" : "Non-shared");
     }
 
     /**
@@ -399,7 +402,7 @@ public class SingleAccountModeFragment extends Fragment {
      */
     private void showToastOnSignOut() {
         final String signOutText = "Signed Out.";
-        currentUserTextView.setText("");
+       // currentUserTextView.setText("");
         Toast.makeText(getContext(), signOutText, Toast.LENGTH_SHORT)
                 .show();
     }
