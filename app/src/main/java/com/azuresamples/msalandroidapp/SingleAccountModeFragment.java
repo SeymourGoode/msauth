@@ -70,11 +70,11 @@ public class SingleAccountModeFragment extends Fragment {
     Button signOutButton;
     Button callGraphApiInteractiveButton;
     Button callGraphApiSilentButton;
-    TextView scopeTextView;
+//  TextView scopeTextView;
     TextView graphResourceTextView;
-    TextView logTextView;
+//  TextView logTextView;
     TextView currentUserTextView;
-    TextView deviceModeTextView;
+//  TextView deviceModeTextView;
 
     /* Azure AD Variables */
     private ISingleAccountPublicClientApplication mSingleAccountApp;
@@ -119,11 +119,11 @@ public class SingleAccountModeFragment extends Fragment {
         signOutButton = view.findViewById(R.id.btn_removeAccount);
         callGraphApiInteractiveButton = view.findViewById(R.id.btn_callGraphInteractively);
         callGraphApiSilentButton = view.findViewById(R.id.btn_callGraphSilently);
-        scopeTextView = view.findViewById(R.id.scope);
+//      scopeTextView = view.findViewById(R.id.scope);
         graphResourceTextView = view.findViewById(R.id.msgraph_url);
-        logTextView = view.findViewById(R.id.txt_log);
+//      logTextView = view.findViewById(R.id.txt_log);
         currentUserTextView = view.findViewById(R.id.current_user);
-        deviceModeTextView = view.findViewById(R.id.device_mode);
+//      deviceModeTextView = view.findViewById(R.id.device_mode);
 
         final String defaultGraphResourceUrl = MSGraphRequestWrapper.MS_GRAPH_ROOT_ENDPOINT + "v1.0/me";
         graphResourceTextView.setText(defaultGraphResourceUrl);
@@ -217,7 +217,9 @@ public class SingleAccountModeFragment extends Fragment {
      * i.e. from "User.Read User.ReadWrite" to ["user.read", "user.readwrite"]
      */
     private String[] getScopes() {
-        return scopeTextView.getText().toString().toLowerCase().split(" ");
+        String[] s = {"user.read"};
+        return s;
+//      return scopeTextView.getText().toString().toLowerCase().split(" ");
     }
 
     /**
@@ -338,14 +340,14 @@ public class SingleAccountModeFragment extends Fragment {
                     public void onResponse(JSONObject response) {
                         /* Successfully called graph, process data and send to UI */
                         Log.d(TAG, "Response: " + response.toString());
-                        displayGraphResult(response);
+//                      displayGraphResult(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d(TAG, "Error: " + error.toString());
-                        displayError(error);
+//                      displayError(error);
                     }
                 });
     }
@@ -363,14 +365,14 @@ public class SingleAccountModeFragment extends Fragment {
      * Display the graph response
      */
     private void displayGraphResult(@NonNull final JSONObject graphResponse) {
-        logTextView.setText(graphResponse.toString());
+//        logTextView.setText(graphResponse.toString());
     }
 
     /**
      * Display the error message
      */
     private void displayError(@NonNull final Exception exception) {
-        logTextView.setText(exception.toString());
+//        logTextView.setText(exception.toString());
     }
 
     /**
@@ -391,7 +393,7 @@ public class SingleAccountModeFragment extends Fragment {
             currentUserTextView.setText("None");
         }
 
-        deviceModeTextView.setText(mSingleAccountApp.isSharedDevice() ? "Shared" : "Non-shared");
+        //deviceModeTextView.setText(mSingleAccountApp.isSharedDevice() ? "Shared" : "Non-shared");
     }
 
     /**
