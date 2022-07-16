@@ -64,7 +64,7 @@ public class B2CModeFragment extends Fragment {
     Button removeAccountButton;
     Button runUserFlowButton;
     Button acquireTokenSilentButton;
-    TextView graphResourceTextView;
+//    TextView graphResourceTextView;
     TextView logTextView;
     Spinner policyListSpinner;
     Spinner b2cUserList;
@@ -110,7 +110,7 @@ public class B2CModeFragment extends Fragment {
         removeAccountButton = view.findViewById(R.id.btn_removeAccount);
         runUserFlowButton = view.findViewById(R.id.btn_runUserFlow);
         acquireTokenSilentButton = view.findViewById(R.id.btn_acquireTokenSilently);
-        graphResourceTextView = view.findViewById(R.id.msgraph_url);
+//        graphResourceTextView = view.findViewById(R.id.msgraph_url);
         logTextView = view.findViewById(R.id.txt_log);
         policyListSpinner = view.findViewById(R.id.policy_list);
         b2cUserList = view.findViewById(R.id.user_list);
