@@ -45,15 +45,16 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity
         implements //NavigationView.OnNavigationItemSelectedListener,
         OnFragmentInteractionListener{
-/**
+
     enum AppFragment {
         SingleAccount,
+        Inventory
 //      MultipleAccount,
 //      B2C
     }
 
     private AppFragment mCurrentFragment = AppFragment.SingleAccount;
-*/
+
     private ConstraintLayout mContentMain;
 
     @Override
@@ -67,17 +68,17 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//       NavigationView navigationView = findViewById(R.id.nav_view);
+//        NavigationView navigationView = findViewById(R.id.nav_view);
 //        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
 //                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 //        drawer.addDrawerListener(toggle);
-//       toggle.syncState();
+//        toggle.syncState();
 //        navigationView.setNavigationItemSelectedListener(this);
 
-        //Set default fragment
+//        Set default fragment
 //        navigationView.setCheckedItem(R.id.nav_single_account);
         setHeaderString();
-        displayFragment();
+        displayFragment(mCurrentFragment);
 //      setCurrentFragment(AppFragment.SingleAccount);
     }
 /**
@@ -117,17 +118,17 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+ */
     private void setCurrentFragment(final AppFragment newFragment){
         if (newFragment == mCurrentFragment) {
             return;
         }
 
         mCurrentFragment = newFragment;
-        setHeaderString(mCurrentFragment);
+        setHeaderString(); //mCurrentFragment);
         displayFragment(mCurrentFragment);
     }
-*/
+
 
     private void setHeaderString(){
 //        switch (fragment) {
@@ -144,11 +145,16 @@ public class MainActivity extends AppCompatActivity
 //        }
     }
 
-    private void displayFragment(){
-//        switch (fragment) {
-//            case SingleAccount:
-        attachFragment(new SingleAccountModeFragment());
-//                return;
+    private void displayFragment(AppFragment fragment){
+        switch (fragment) {
+            case SingleAccount:
+                attachFragment(new SingleAccountModeFragment());
+                return;
+            case Inventory:
+                attachFragment(new InventoryFragment());
+                return;
+
+//
 //            case MultipleAccount:
 //                attachFragment(new MultipleAccountModeFragment());
 //                return;
@@ -156,7 +162,7 @@ public class MainActivity extends AppCompatActivity
 //            case B2C:
 //               attachFragment(new B2CModeFragment());
 //               return;
-//        }
+       }
     }
 
     private void attachFragment(final Fragment fragment) {
