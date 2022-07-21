@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity
     private void setHeaderString(){
 //        switch (fragment) {
 //            case SingleAccount:
-                getSupportActionBar().setTitle("Hardware Inventory");
+        getSupportActionBar().setTitle("Hardware Inventory");
 //                return;
 //            case MultipleAccount:
 //                getSupportActionBar().setTitle("Multiple Account Mode");
@@ -153,7 +153,6 @@ public class MainActivity extends AppCompatActivity
             case Inventory:
                 attachFragment(new InventoryFragment());
                 return;
-
 //
 //            case MultipleAccount:
 //                attachFragment(new MultipleAccountModeFragment());
