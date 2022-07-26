@@ -67,16 +67,16 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.addDrawerListener(toggle);
-//        toggle.syncState();
-//        navigationView.setNavigationItemSelectedListener(this);
+//      DrawerLayout drawer = findViewById(R.id.drawer_layout);
+//      NavigationView navigationView = findViewById(R.id.nav_view);
+//      ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//              this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//      drawer.addDrawerListener(toggle);
+//      toggle.syncState();
+//      navigationView.setNavigationItemSelectedListener(this);
 
-//        Set default fragment
-//        navigationView.setCheckedItem(R.id.nav_single_account);
+//      Set default fragment
+//      navigationView.setCheckedItem(R.id.nav_single_account);
         setHeaderString();
         displayFragment(mCurrentFragment);
 //      setCurrentFragment(AppFragment.SingleAccount);
@@ -95,18 +95,18 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDrawerClosed(@NonNull View drawerView) {
                 // Handle navigation view item clicks here.
-//                int id = item.getItemId();
+                  int id = item.getItemId();
 
-//                if (id == R.id.nav_single_account) {
-//                    setCurrentFragment(AppFragment.SingleAccount);
-//                }
-//                if (id == R.id.nav_multiple_account) {
-//                    setCurrentFragment(AppFragment.MultipleAccount);
-//               }
+                  if (id == R.id.nav_single_account) {
+                      setCurrentFragment(AppFragment.SingleAccount);
+                  }
+                  if (id == R.id.nav_multiple_account) {
+                      setCurrentFragment(AppFragment.MultipleAccount);
+                 }
 
-//                if (id == R.id.nav_b2c) {
-//                    setCurrentFragment(AppFragment.B2C);
-//                }
+                  if (id == R.id.nav_b2c) {
+                      setCurrentFragment(AppFragment.B2C);
+                  }
                 drawer.removeDrawerListener(this);
             }
 

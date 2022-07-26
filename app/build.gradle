@@ -28,7 +28,6 @@ allprojects {
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
     defaultConfig {
         applicationId "com.azuresamples.msalandroidapp"
         minSdkVersion rootProject.ext.minSdkVersion

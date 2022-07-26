@@ -28,6 +28,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -68,12 +69,12 @@ public class SingleAccountModeFragment extends Fragment {
     /* UI & Debugging Variables */
     Button signInButton;
     Button signOutButton;
+    TextView currentUserTextView;
 //  Button callGraphApiInteractiveButton;
 //  Button callGraphApiSilentButton;
 //  TextView scopeTextView;
 //  TextView graphResourceTextView;
 //  TextView logTextView;
-    TextView currentUserTextView;
 //  TextView deviceModeTextView;
 
     String GraphResourceUrl;
@@ -120,12 +121,12 @@ public class SingleAccountModeFragment extends Fragment {
     private void initializeUI(@NonNull final View view) {
         signInButton = view.findViewById(R.id.btn_signIn);
         signOutButton = view.findViewById(R.id.btn_removeAccount);
+        currentUserTextView = view.findViewById(R.id.current_user);
 //      callGraphApiInteractiveButton = view.findViewById(R.id.btn_callGraphInteractively);
 //      callGraphApiSilentButton = view.findViewById(R.id.btn_callGraphSilently);
 //      scopeTextView = view.findViewById(R.id.scope);
 //      graphResourceTextView = view.findViewById(R.id.msgraph_url);
 //      logTextView = view.findViewById(R.id.txt_log);
-        currentUserTextView = view.findViewById(R.id.current_user);
 //      deviceModeTextView = view.findViewById(R.id.device_mode);
 
         final String defaultGraphResourceUrl = MSGraphRequestWrapper.MS_GRAPH_ROOT_ENDPOINT + "v1.0/me";
@@ -388,15 +389,15 @@ public class SingleAccountModeFragment extends Fragment {
         if (mAccount != null) {
             signInButton.setEnabled(false);
             signOutButton.setEnabled(true);
+            currentUserTextView.setText(mAccount.getUsername());
 //          callGraphApiInteractiveButton.setEnabled(true);
 //          callGraphApiSilentButton.setEnabled(true);
-            currentUserTextView.setText(mAccount.getUsername());
         } else {
             signInButton.setEnabled(true);
             signOutButton.setEnabled(false);
+            currentUserTextView.setText("None");
 //          callGraphApiInteractiveButton.setEnabled(false);
 //          callGraphApiSilentButton.setEnabled(false);
-            currentUserTextView.setText("None");
         }
 
         //deviceModeTextView.setText(mSingleAccountApp.isSharedDevice() ? "Shared" : "Non-shared");
@@ -411,4 +412,6 @@ public class SingleAccountModeFragment extends Fragment {
         Toast.makeText(getContext(), signOutText, Toast.LENGTH_SHORT)
                 .show();
     }
+
+
 }
