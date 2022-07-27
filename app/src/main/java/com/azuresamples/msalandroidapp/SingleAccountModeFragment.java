@@ -40,15 +40,15 @@ import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.microsoft.identity.client.AuthenticationCallback;
 import com.microsoft.identity.client.IAccount;
 import com.microsoft.identity.client.IAuthenticationResult;
-import com.microsoft.identity.client.IPublicClientApplication;
-import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
+import com.microsoft.identity.client.AuthenticationCallback;
+import com.microsoft.identity.client.exception.MsalException;
 import com.microsoft.identity.client.PublicClientApplication;
+import com.microsoft.identity.client.IPublicClientApplication;
 import com.microsoft.identity.client.SilentAuthenticationCallback;
 import com.microsoft.identity.client.exception.MsalClientException;
-import com.microsoft.identity.client.exception.MsalException;
+import com.microsoft.identity.client.ISingleAccountPublicClientApplication;
 import com.microsoft.identity.client.exception.MsalServiceException;
 import com.microsoft.identity.client.exception.MsalUiRequiredException;
 
@@ -63,7 +63,7 @@ import org.json.JSONObject;
  * <p>
  * Please note that switching mode (between 'single' and 'multiple' might cause a loss of data.
  */
-public class SingleAccountModeFragment extends Fragment {
+public class SingleAccountModeFragment extends Fragment implements OnFragmentInteractionListener{
     private static final String TAG = SingleAccountModeFragment.class.getSimpleName();
 
     /* UI & Debugging Variables */
@@ -78,6 +78,7 @@ public class SingleAccountModeFragment extends Fragment {
 //  TextView deviceModeTextView;
 
     String GraphResourceUrl;
+    Fragment currentFrag;
     InventoryFragment theFrag;
 
     /* Azure AD Variables */
@@ -413,5 +414,12 @@ public class SingleAccountModeFragment extends Fragment {
                 .show();
     }
 
+    private void attachFragment(final Fragment fragment) {
+        getFragmentManager()
+                .beginTransaction()
+                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .replace(currentFrag.getId(),fragment)
+                .commit();
+    }
 
 }
