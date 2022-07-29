@@ -27,6 +27,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -69,6 +71,7 @@ public class SingleAccountModeFragment extends Fragment implements OnFragmentInt
     /* UI & Debugging Variables */
     Button signInButton;
     Button signOutButton;
+    Button test_button;
     TextView currentUserTextView;
 //  Button callGraphApiInteractiveButton;
 //  Button callGraphApiSilentButton;
@@ -84,6 +87,8 @@ public class SingleAccountModeFragment extends Fragment implements OnFragmentInt
     /* Azure AD Variables */
     private ISingleAccountPublicClientApplication mSingleAccountApp;
     private IAccount mAccount;
+
+    private ConstraintLayout mContentMain;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -122,6 +127,7 @@ public class SingleAccountModeFragment extends Fragment implements OnFragmentInt
     private void initializeUI(@NonNull final View view) {
         signInButton = view.findViewById(R.id.btn_signIn);
         signOutButton = view.findViewById(R.id.btn_removeAccount);
+        test_button = view.findViewById(R.id.test_button);
         currentUserTextView = view.findViewById(R.id.current_user);
 //      callGraphApiInteractiveButton = view.findViewById(R.id.btn_callGraphInteractively);
 //      callGraphApiSilentButton = view.findViewById(R.id.btn_callGraphSilently);
@@ -166,6 +172,12 @@ public class SingleAccountModeFragment extends Fragment implements OnFragmentInt
                         displayError(exception);
                     }
                 });
+            }
+        });
+
+        test_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                attachFragment(new InventoryFragment());
             }
         });
 /**
@@ -418,7 +430,7 @@ public class SingleAccountModeFragment extends Fragment implements OnFragmentInt
         getFragmentManager()
                 .beginTransaction()
                 .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                .replace(currentFrag.getId(),fragment)
+                .replace(mContentMain.getId(),fragment)
                 .commit();
     }
 

@@ -43,7 +43,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity
-        implements //NavigationView.OnNavigationItemSelectedListener,
+        implements NavigationView.OnNavigationItemSelectedListener,
         OnFragmentInteractionListener{
 
     enum AppFragment {
@@ -67,21 +67,21 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//      DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//      NavigationView navigationView = findViewById(R.id.nav_view);
-//      ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-//              this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//      drawer.addDrawerListener(toggle);
-//      toggle.syncState();
-//      navigationView.setNavigationItemSelectedListener(this);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
 
 //      Set default fragment
-//      navigationView.setCheckedItem(R.id.nav_single_account);
+        navigationView.setCheckedItem(R.id.nav_single_account);
         setHeaderString();
         displayFragment(mCurrentFragment);
 //      setCurrentFragment(AppFragment.SingleAccount);
     }
-/**
+
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -100,12 +100,12 @@ public class MainActivity extends AppCompatActivity
                   if (id == R.id.nav_single_account) {
                       setCurrentFragment(AppFragment.SingleAccount);
                   }
-                  if (id == R.id.nav_multiple_account) {
-                      setCurrentFragment(AppFragment.MultipleAccount);
-                 }
+ //               if (id == R.id.nav_multiple_account) {
+ //                   setCurrentFragment(AppFragment.MultipleAccount);
+ //              }
 
                   if (id == R.id.nav_b2c) {
-                      setCurrentFragment(AppFragment.B2C);
+                      setCurrentFragment(AppFragment.Inventory);
                   }
                 drawer.removeDrawerListener(this);
             }
@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
- */
+
     private void setCurrentFragment(final AppFragment newFragment){
         if (newFragment == mCurrentFragment) {
             return;

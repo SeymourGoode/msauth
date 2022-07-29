@@ -6,10 +6,10 @@
         <item
             android:id="@+id/nav_single_account"
             android:icon="@drawable/ic_single_account_24dp"
-            android:title="Single Account Mode" />
+            android:title="Login Page" />
         <item
             android:id="@+id/nav_b2c"
             android:icon="@drawable/ic_single_account_24dp"
-            android:title="B2C Mode" />
+            android:title="Inventory" />
     </group>
 </menu>
